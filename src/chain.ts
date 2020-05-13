@@ -7,9 +7,6 @@ export class ChainID {
   public static standard = "caip-2";
   public static delimiter = ";";
 
-  public namespace: string;
-  public reference: string;
-
   public static isValid(chainId: string) {
     return chainId.includes(this.delimiter);
   }
@@ -28,6 +25,9 @@ export class ChainID {
   public static format(params: ChainIDParams): string {
     return params.reference + this.delimiter + params.namespace;
   }
+
+  public namespace: string;
+  public reference: string;
 
   constructor(params: ChainIDParams) {
     this.namespace = params.namespace;

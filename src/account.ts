@@ -9,9 +9,6 @@ export class AccountID {
   public static standard = "caip-10";
   public static delimiter = "@";
 
-  public chainId: ChainID;
-  public address: string;
-
   public static isValid(accountId: string) {
     return accountId.includes(this.delimiter);
   }
@@ -30,6 +27,9 @@ export class AccountID {
   public static format(params: AccountIDParams): string {
     return params.address + this.delimiter + params.chainId;
   }
+
+  public chainId: ChainID;
+  public address: string;
 
   constructor(params: AccountIDParams) {
     this.chainId = ChainID.parse(params.chainId);
