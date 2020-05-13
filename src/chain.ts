@@ -1,4 +1,4 @@
-interface ChainIDParams {
+export interface ChainIDParams {
   namespace: string;
   reference: string;
 }
@@ -29,9 +29,15 @@ export class ChainID {
   public namespace: string;
   public reference: string;
 
-  constructor(params: ChainIDParams) {
-    this.namespace = params.namespace;
-    this.reference = params.reference;
+  constructor(params: ChainIDParams | string) {
+    if (typeof params === "string") {
+      const chainId = ChainID.parse(params);
+      this.namespace = chainId.namespace;
+      this.reference = chainId.reference;
+    } else {
+      this.namespace = params.namespace;
+      this.reference = params.reference;
+    }
   }
 
   public toString(): string {

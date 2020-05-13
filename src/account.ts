@@ -1,7 +1,7 @@
-import { ChainID } from "./chain";
+import { ChainID, ChainIDParams } from "./chain";
 
-interface AccountIDParams {
-  chainId: string;
+export interface AccountIDParams {
+  chainId: string | ChainIDParams;
   address: string;
 }
 
@@ -31,9 +31,15 @@ export class AccountID {
   public chainId: ChainID;
   public address: string;
 
-  constructor(params: AccountIDParams) {
-    this.chainId = ChainID.parse(params.chainId);
-    this.address = params.address;
+  constructor(params: AccountIDParams | string) {
+    if (typeof params === "string") {
+      const accountId = AccountID.parse(params);
+      this.chainId = accountId.chainId;
+      this.address = accountId.address;
+    } else {
+      this.chainId = new ChainID(params.chainId);
+      this.address = params.address;
+    }
   }
 
   public toString(): string {
