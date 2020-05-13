@@ -5,7 +5,7 @@ interface ChainIDParams {
 
 export class ChainID {
   public static standard = "caip-2";
-  public static delimiter = ";";
+  public static delimiter = ":";
 
   public static isValid(chainId: string) {
     return chainId.includes(this.delimiter);
