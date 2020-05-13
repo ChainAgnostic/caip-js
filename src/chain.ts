@@ -17,13 +17,13 @@ export class ChainID {
     }
     const params = chainId.split(this.delimiter);
     return new ChainID({
-      namespace: params[1],
-      reference: params[0],
+      namespace: params[0],
+      reference: params[1],
     });
   }
 
   public static format(params: ChainIDParams): string {
-    return params.reference + this.delimiter + params.namespace;
+    return params.namespace + this.delimiter + params.reference;
   }
 
   public namespace: string;
