@@ -1,2 +1,2 @@
-export class ChainID {}
-export class AccountID {}
+export * from "./account";
+export * from "./chain";
