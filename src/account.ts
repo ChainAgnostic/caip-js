@@ -1,4 +1,7 @@
 import { ChainID, ChainIDParams } from "./chain";
+import { CAIP } from "./spec";
+import { StandardSpec } from "./types";
+import { isValidId, splitParams, joinParams } from "./utils";
 
 export interface AccountIDParams {
   chainId: string | ChainIDParams;
@@ -6,18 +9,13 @@ export interface AccountIDParams {
 }
 
 export class AccountID {
-  public static standard = "caip-10";
-  public static delimiter = "@";
-
-  public static isValid(accountId: string) {
-    return accountId.includes(this.delimiter);
-  }
+  public static spec: StandardSpec = CAIP["10"];
 
   public static parse(accountId: string): AccountID {
-    if (!AccountID.isValid(accountId)) {
+    if (!isValidId(accountId, this.spec)) {
       throw new Error(`Invalid accountId provided: ${accountId}`);
     }
-    const params = accountId.split(this.delimiter);
+    const params = splitParams(accountId, this.spec);
     return new AccountID({
       chainId: params[1],
       address: params[0],
@@ -25,7 +23,7 @@ export class AccountID {
   }
 
   public static format(params: AccountIDParams): string {
-    return params.address + this.delimiter + params.chainId;
+    return joinParams(params as any, this.spec);
   }
 
   public chainId: ChainID;
@@ -48,7 +46,7 @@ export class AccountID {
 
   public toJson(): AccountIDParams {
     return {
-      chainId: this.chainId.toString(),
+      chainId: this.chainId.toJson(),
       address: this.address,
     };
   }

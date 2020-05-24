@@ -6,7 +6,7 @@ function assertAccountIDInterface(result: AccountID) {
   expect(result.chainId.toString()).toEqual(data.CHAIN_ID_STRING);
   expect(result.address).toEqual(data.ACCOUNT_ID_ADDRESS);
   expect(result.toString()).toEqual(data.ACCOUNT_ID_STRING);
-  expect(result.toJson()).toEqual(data.ACCOUNT_ID_PARAMS);
+  expect(result.toJson()).toEqual(data.ACCOUNT_ID_NESTED_PARAMS);
 }
 
 describe("AccountID", () => {

@@ -1,21 +1,20 @@
+import { CAIP } from "./spec";
+import { StandardSpec } from "./types";
+import { isValidId, splitParams } from "./utils";
+
 export interface ChainIDParams {
   namespace: string;
   reference: string;
 }
 
 export class ChainID {
-  public static standard = "caip-2";
-  public static delimiter = ":";
-
-  public static isValid(chainId: string) {
-    return chainId.includes(this.delimiter);
-  }
+  public static spec: StandardSpec = CAIP["2"];
 
   public static parse(chainId: string): ChainID {
-    if (!ChainID.isValid(chainId)) {
+    if (!isValidId(chainId, this.spec)) {
       throw new Error(`Invalid chainId provided: ${chainId}`);
     }
-    const params = chainId.split(this.delimiter);
+    const params = splitParams(chainId, this.spec);
     return new ChainID({
       namespace: params[0],
       reference: params[1],
@@ -23,7 +22,7 @@ export class ChainID {
   }
 
   public static format(params: ChainIDParams): string {
-    return params.namespace + this.delimiter + params.reference;
+    return params.namespace + this.spec.delimiter + params.reference;
   }
 
   public namespace: string;
