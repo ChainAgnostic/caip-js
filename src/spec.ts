@@ -23,7 +23,7 @@ const CAIP10: StandardSpec = {
   parameters: {
     0: {
       name: "address",
-      regex: "[-a-z0-9]{3,16}",
+      regex: "[a-zA-Z0-9]{1,63}",
     },
     1: CAIP2,
   },
