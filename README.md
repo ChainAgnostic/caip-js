@@ -68,14 +68,14 @@ accountId.toJson();
 ### Using Functions
 
 ```typescript
-import { ChainID } from "caip";
+import { AccountID } from "caip";
 
-ChainID.parse("0xab16a96d359ec26a11e2c2b3d8f8b8942d5bfcdb@eip155:1");
+AccountID.parse("0xab16a96d359ec26a11e2c2b3d8f8b8942d5bfcdb@eip155:1");
 // { address: "0xab16a96d359ec26a11e2c2b3d8f8b8942d5bfcdb", chainId: { namespace: "eip155", reference: "1" } }
 
 // AND
 
-ChainID.format({
+AccountID.format({
   address: "0xab16a96d359ec26a11e2c2b3d8f8b8942d5bfcdb",
   chainId: { namespace: "eip155", reference: "1" },
 });
