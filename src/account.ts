@@ -1,7 +1,7 @@
 import { ChainID, ChainIDParams } from "./chain";
 import { CAIP } from "./spec";
-import { StandardSpec } from "./types";
-import { isValidId, splitParams, joinParams } from "./utils";
+import { IdentifierSpec } from "./types";
+import { isValidId, joinParams, getParams } from "./utils";
 
 export interface AccountIDParams {
   chainId: string | ChainIDParams;
@@ -9,17 +9,13 @@ export interface AccountIDParams {
 }
 
 export class AccountID {
-  public static spec: StandardSpec = CAIP["10"];
+  public static spec: IdentifierSpec = CAIP["10"];
 
-  public static parse(accountId: string): AccountID {
-    if (!isValidId(accountId, this.spec)) {
-      throw new Error(`Invalid accountId provided: ${accountId}`);
+  public static parse(id: string): AccountID {
+    if (!isValidId(id, this.spec)) {
+      throw new Error(`Invalid ${this.spec.name} provided: ${id}`);
     }
-    const params = splitParams(accountId, this.spec);
-    return new AccountID({
-      chainId: params[1],
-      address: params[0],
-    });
+    return new AccountID(getParams<AccountIDParams>(id, this.spec));
   }
 
   public static format(params: AccountIDParams): string {
@@ -31,13 +27,10 @@ export class AccountID {
 
   constructor(params: AccountIDParams | string) {
     if (typeof params === "string") {
-      const accountId = AccountID.parse(params);
-      this.chainId = accountId.chainId;
-      this.address = accountId.address;
-    } else {
-      this.chainId = new ChainID(params.chainId);
-      this.address = params.address;
+      params = AccountID.parse(params);
     }
+    this.chainId = new ChainID(params.chainId);
+    this.address = params.address;
   }
 
   public toString(): string {

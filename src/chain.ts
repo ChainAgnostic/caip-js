@@ -1,6 +1,6 @@
 import { CAIP } from "./spec";
-import { StandardSpec } from "./types";
-import { isValidId, splitParams } from "./utils";
+import { IdentifierSpec } from "./types";
+import { isValidId, joinParams, getParams } from "./utils";
 
 export interface ChainIDParams {
   namespace: string;
@@ -8,21 +8,17 @@ export interface ChainIDParams {
 }
 
 export class ChainID {
-  public static spec: StandardSpec = CAIP["2"];
+  public static spec: IdentifierSpec = CAIP["2"];
 
-  public static parse(chainId: string): ChainID {
-    if (!isValidId(chainId, this.spec)) {
-      throw new Error(`Invalid chainId provided: ${chainId}`);
+  public static parse(id: string): ChainID {
+    if (!isValidId(id, this.spec)) {
+      throw new Error(`Invalid ${this.spec.name} provided: ${id}`);
     }
-    const params = splitParams(chainId, this.spec);
-    return new ChainID({
-      namespace: params[0],
-      reference: params[1],
-    });
+    return new ChainID(getParams<ChainIDParams>(id, this.spec));
   }
 
   public static format(params: ChainIDParams): string {
-    return params.namespace + this.spec.delimiter + params.reference;
+    return joinParams(params as any, this.spec);
   }
 
   public namespace: string;
@@ -30,13 +26,10 @@ export class ChainID {
 
   constructor(params: ChainIDParams | string) {
     if (typeof params === "string") {
-      const chainId = ChainID.parse(params);
-      this.namespace = chainId.namespace;
-      this.reference = chainId.reference;
-    } else {
-      this.namespace = params.namespace;
-      this.reference = params.reference;
+      params = ChainID.parse(params);
     }
+    this.namespace = params.namespace;
+    this.reference = params.reference;
   }
 
   public toString(): string {

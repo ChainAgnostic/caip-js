@@ -3,10 +3,12 @@ export interface ParameterSpec {
   regex: string;
 }
 
-export interface StandardSpec extends ParameterSpec {
-  delimiter: string;
+export interface IdentifierSpec extends ParameterSpec {
   parameters: {
-    [index: string]: ParameterSpec;
+    delimiter: string;
+    values: {
+      [index: string]: ParameterSpec;
+    };
   };
 }
 

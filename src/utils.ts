@@ -1,26 +1,38 @@
-import { StandardSpec, Params } from "./types";
+import { IdentifierSpec, Params } from "./types";
 
-export function splitParams(id: string, spec: StandardSpec): string[] {
-  return id.split(spec.delimiter);
+export function splitParams(id: string, spec: IdentifierSpec): string[] {
+  return id.split(spec.parameters.delimiter);
 }
 
-export function joinParams(params: Params, spec: StandardSpec): string {
-  return Object.values(spec.parameters)
+export function getParams<T>(id: string, spec: IdentifierSpec): T {
+  const arr = splitParams(id, spec);
+  const params = {};
+  arr.forEach((value, index) => {
+    params[spec.parameters.values[index].name] = value;
+  });
+  return params as T;
+}
+
+export function joinParams(params: Params, spec: IdentifierSpec): string {
+  return Object.values(spec.parameters.values)
     .map(parameter => {
       const param = params[parameter.name];
       return typeof param === "string"
         ? param
-        : joinParams(param, parameter as StandardSpec);
+        : joinParams(param, parameter as IdentifierSpec);
     })
-    .join(spec.delimiter);
+    .join(spec.parameters.delimiter);
 }
 
-export function isValidId(id: string, spec: StandardSpec): boolean {
+export function isValidId(id: string, spec: IdentifierSpec): boolean {
   if (!new RegExp(spec.regex).test(id)) return false;
   const params = splitParams(id, spec);
-  if (params.length !== Object.keys(spec.parameters).length) return false;
+  if (params.length !== Object.keys(spec.parameters.values).length)
+    return false;
   const matches = params
-    .map((param, index) => new RegExp(spec.parameters[index].regex).test(param))
+    .map((param, index) =>
+      new RegExp(spec.parameters.values[index].regex).test(param)
+    )
     .filter(x => !!x);
   if (matches.length !== params.length) return false;
   return true;
