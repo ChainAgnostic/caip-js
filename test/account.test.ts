@@ -12,7 +12,7 @@ function assertAccountIDInterface(result: AccountID) {
 describe("AccountID", () => {
   it("should parse string", async () => {
     const result = AccountID.parse(data.ACCOUNT_ID_STRING);
-    assertAccountIDInterface(result);
+    expect(result).toEqual(data.ACCOUNT_ID_NESTED_PARAMS);
   });
 
   it("should format params", async () => {

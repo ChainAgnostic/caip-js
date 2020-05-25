@@ -12,7 +12,7 @@ function assertChainIDInterface(result: ChainID) {
 describe("ChainID", () => {
   it("should parse string", async () => {
     const result = ChainID.parse(data.CHAIN_ID_STRING);
-    assertChainIDInterface(result);
+    expect(result).toEqual(data.CHAIN_ID_PARAMS);
   });
 
   it("should format params", async () => {

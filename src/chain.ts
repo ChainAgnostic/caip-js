@@ -10,11 +10,11 @@ export interface ChainIDParams {
 export class ChainID {
   public static spec: IdentifierSpec = CAIP["2"];
 
-  public static parse(id: string): ChainID {
+  public static parse(id: string): ChainIDParams {
     if (!isValidId(id, this.spec)) {
       throw new Error(`Invalid ${this.spec.name} provided: ${id}`);
     }
-    return new ChainID(getParams<ChainIDParams>(id, this.spec));
+    return new ChainID(getParams<ChainIDParams>(id, this.spec)).toJson();
   }
 
   public static format(params: ChainIDParams): string {

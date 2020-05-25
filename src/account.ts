@@ -11,11 +11,11 @@ export interface AccountIDParams {
 export class AccountID {
   public static spec: IdentifierSpec = CAIP["10"];
 
-  public static parse(id: string): AccountID {
+  public static parse(id: string): AccountIDParams {
     if (!isValidId(id, this.spec)) {
       throw new Error(`Invalid ${this.spec.name} provided: ${id}`);
     }
-    return new AccountID(getParams<AccountIDParams>(id, this.spec));
+    return new AccountID(getParams<AccountIDParams>(id, this.spec)).toJson();
   }
 
   public static format(params: AccountIDParams): string {

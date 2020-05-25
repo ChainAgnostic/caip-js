@@ -4,7 +4,7 @@ CAIP standard utils
 
 ## ChainID (CAIP-2)
 
-### Using Classes
+### Object-oriented
 
 ```typescript
 import { ChainID } from "caip";
@@ -24,7 +24,7 @@ chainId.toJson();
 // { namespace: "eip155", reference: "1" }
 ```
 
-### Using Functions
+### Functional
 
 ```typescript
 import { ChainID } from "caip";
@@ -40,7 +40,7 @@ ChainID.format({ namespace: "eip155", reference: "1" });
 
 ## AccountID (CAIP-10)
 
-### Using Classes
+### Object-oriented
 
 ```typescript
 import { AccountID } from "caip";
@@ -56,6 +56,13 @@ const accountId = new AccountID({
   chainId: { namespace: "eip155", reference: "1" },
 });
 
+// ALSO
+
+const accountId = new AccountID({
+  address: "0xab16a96d359ec26a11e2c2b3d8f8b8942d5bfcdb",
+  chainId: "eip155:1",
+});
+
 // THEN
 
 accountId.toString();
@@ -65,7 +72,7 @@ accountId.toJson();
 // { address: "0xab16a96d359ec26a11e2c2b3d8f8b8942d5bfcdb", chainId: { namespace: "eip155", reference: "1" } }
 ```
 
-### Using Functions
+### Functional
 
 ```typescript
 import { AccountID } from "caip";
@@ -78,6 +85,14 @@ AccountID.parse("0xab16a96d359ec26a11e2c2b3d8f8b8942d5bfcdb@eip155:1");
 AccountID.format({
   address: "0xab16a96d359ec26a11e2c2b3d8f8b8942d5bfcdb",
   chainId: { namespace: "eip155", reference: "1" },
+});
+//"0xab16a96d359ec26a11e2c2b3d8f8b8942d5bfcdb@eip155:1"
+
+// OR
+
+AccountID.format({
+  address: "0xab16a96d359ec26a11e2c2b3d8f8b8942d5bfcdb",
+  chainId: "eip155:1",
 });
 //"0xab16a96d359ec26a11e2c2b3d8f8b8942d5bfcdb@eip155:1"
 ```
