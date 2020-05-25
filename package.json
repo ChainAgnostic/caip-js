@@ -1,7 +1,7 @@
 {
   "name": "caip",
   "description": "CAIP standard utils",
-  "version": "0.9.1",
+  "version": "0.9.2",
   "author": "Pedro Gomes <github.com/pedrouid>",
   "license": "MIT",
   "keywords": [
