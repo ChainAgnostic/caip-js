@@ -29,6 +29,7 @@ export class AccountID {
     if (typeof params === "string") {
       params = AccountID.parse(params);
     }
+
     this.chainId = new ChainID(params.chainId);
     this.address = params.address;
   }
