@@ -2,17 +2,17 @@ import { IdentifierSpec } from "./types";
 
 const CAIP2: IdentifierSpec = {
   name: "chainId",
-  regex: "[-:a-zA-Z0-9]{5,64}",
+  regex: "[-:a-zA-Z0-9]{5,41}",
   parameters: {
     delimiter: ":",
     values: {
       0: {
         name: "namespace",
-        regex: "[-a-z0-9]{3,16}",
+        regex: "[-a-z0-9]{3,8}",
       },
       1: {
         name: "reference",
-        regex: "[-a-zA-Z0-9]{1,47}",
+        regex: "[-a-zA-Z0-9]{1,32}",
       },
     },
   },
@@ -20,15 +20,15 @@ const CAIP2: IdentifierSpec = {
 
 const CAIP10: IdentifierSpec = {
   name: "accountId",
-  regex: "[-@:a-zA-Z0-9]{7,128}",
+  regex: "[-:a-zA-Z0-9]{7,106}",
   parameters: {
-    delimiter: "@",
+    delimiter: ":",
     values: {
-      0: {
+      0: CAIP2,
+      1: {
         name: "address",
-        regex: "[a-zA-Z0-9]{1,63}",
+        regex: "[a-zA-Z0-9]{1,64}",
       },
-      1: CAIP2,
     },
   },
 };
@@ -36,17 +36,17 @@ const CAIP10: IdentifierSpec = {
 // represents namespace:reference in CAIP-19
 const AssetName: IdentifierSpec = {
   name: "assetName",
-  regex: "[-:a-zA-Z0-9]{5,128}",
+  regex: "[-:a-zA-Z0-9]{5,73}",
   parameters: {
     delimiter: ":",
     values: {
       0: {
         name: "assetNamespace",
-        regex: "[-a-z0-9]{3,16}",
+        regex: "[-a-z0-9]{3,8}",
       },
       1: {
         name: "assetReference",
-        regex: "[-a-zA-Z0-9]{1,47}",
+        regex: "[-a-zA-Z0-9]{1,64}",
       },
     },
   },
@@ -54,7 +54,7 @@ const AssetName: IdentifierSpec = {
 
 const CAIP19AssetType: IdentifierSpec = {
   name: "assetType",
-  regex: "[-:a-zA-Z0-9]{7,128}",
+  regex: "[-:a-zA-Z0-9]{11,115}",
   parameters: {
     delimiter: "/",
     values: {
@@ -66,7 +66,7 @@ const CAIP19AssetType: IdentifierSpec = {
 
 const CAIP19AssetId: IdentifierSpec = {
   name: "assetId",
-  regex: "[-:a-zA-Z0-9]{7,128}",
+  regex: "[-:a-zA-Z0-9]{13,148}",
   parameters: {
     delimiter: "/",
     values: {
@@ -74,7 +74,7 @@ const CAIP19AssetId: IdentifierSpec = {
       1: AssetName,
       2: {
         name: "tokenId",
-        regex: "[-a-zA-Z0-9]{1,47}",
+        regex: "[-a-zA-Z0-9]{1,32}",
       },
     },
   },
