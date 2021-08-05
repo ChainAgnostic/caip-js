@@ -2,31 +2,31 @@ import { CAIP } from "./spec";
 import { IdentifierSpec } from "./types";
 import { isValidId, joinParams, getParams } from "./utils";
 
-export interface ChainIDParams {
+export interface ChainIdParams {
   namespace: string;
   reference: string;
 }
 
-export class ChainID {
+export class ChainId {
   public static spec: IdentifierSpec = CAIP["2"];
 
-  public static parse(id: string): ChainIDParams {
+  public static parse(id: string): ChainIdParams {
     if (!isValidId(id, this.spec)) {
       throw new Error(`Invalid ${this.spec.name} provided: ${id}`);
     }
-    return new ChainID(getParams<ChainIDParams>(id, this.spec)).toJson();
+    return new ChainId(getParams<ChainIdParams>(id, this.spec)).toJson();
   }
 
-  public static format(params: ChainIDParams): string {
+  public static format(params: ChainIdParams): string {
     return joinParams(params as any, this.spec);
   }
 
   public namespace: string;
   public reference: string;
 
-  constructor(params: ChainIDParams | string) {
+  constructor(params: ChainIdParams | string) {
     if (typeof params === "string") {
-      params = ChainID.parse(params);
+      params = ChainId.parse(params);
     }
 
     this.namespace = params.namespace;
@@ -34,10 +34,10 @@ export class ChainID {
   }
 
   public toString(): string {
-    return ChainID.format(this.toJson());
+    return ChainId.format(this.toJson());
   }
 
-  public toJson(): ChainIDParams {
+  public toJson(): ChainIdParams {
     return {
       namespace: this.namespace,
       reference: this.reference,

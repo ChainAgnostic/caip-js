@@ -3,8 +3,8 @@ import { IdentifierSpec } from "./types";
 import { isValidId, joinParams, getParams } from "./utils";
 
 export interface AssetNameParams {
-  assetNamespace: string;
-  assetReference: string;
+  namespace: string;
+  reference: string;
 }
 
 export class AssetName {
@@ -21,16 +21,16 @@ export class AssetName {
     return joinParams(params as any, this.spec);
   }
 
-  public assetNamespace: string;
-  public assetReference: string;
+  public namespace: string;
+  public reference: string;
 
   constructor(params: AssetNameParams | string) {
     if (typeof params === "string") {
       params = AssetName.parse(params);
     }
 
-    this.assetNamespace = params.assetNamespace;
-    this.assetReference = params.assetReference;
+    this.namespace = params.namespace;
+    this.reference = params.reference;
   }
 
   public toString(): string {
@@ -39,8 +39,8 @@ export class AssetName {
 
   public toJson(): AssetNameParams {
     return {
-      assetNamespace: this.assetNamespace,
-      assetReference: this.assetReference,
+      namespace: this.namespace,
+      reference: this.reference,
     };
   }
 }

@@ -4,9 +4,7 @@ import * as data from "./data";
 
 function assertInterface(result: AssetId) {
   expect(result.chainId.toString()).toEqual(data.CHAIN_ID_STRING);
-  expect(result.assetName.toString()).toEqual(
-    data.ASSET_NAMESPACE_AND_REFERENCE_STRING
-  );
+  expect(result.assetName.toString()).toEqual(data.ASSET_NAME_STRING);
   expect(result.tokenId).toEqual(data.TOKEN_ID);
   expect(result.toString()).toEqual(data.ASSET_ID_STRING);
   expect(result.toJson()).toEqual(data.ASSET_ID_NESTED_PARAMS);

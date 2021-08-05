@@ -1,11 +1,11 @@
 import { AssetName, AssetNameParams } from "./assetName";
-import { ChainID, ChainIDParams } from "./chain";
+import { ChainId, ChainIdParams } from "./chain";
 import { CAIP } from "./spec";
 import { IdentifierSpec } from "./types";
 import { isValidId, joinParams, getParams } from "./utils";
 
 export interface AssetTypeParams {
-  chainId: string | ChainIDParams;
+  chainId: string | ChainIdParams;
   assetName: string | AssetNameParams;
 }
 
@@ -23,7 +23,7 @@ export class AssetType {
     return joinParams(params as any, this.spec);
   }
 
-  public chainId: ChainID;
+  public chainId: ChainId;
   public assetName: AssetName;
 
   constructor(params: AssetTypeParams | string) {
@@ -31,7 +31,7 @@ export class AssetType {
       params = AssetType.parse(params);
     }
 
-    this.chainId = new ChainID(params.chainId);
+    this.chainId = new ChainId(params.chainId);
     this.assetName = new AssetName(params.assetName);
   }
 

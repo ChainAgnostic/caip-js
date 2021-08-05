@@ -48,11 +48,11 @@ const AssetName: IdentifierSpec = {
     delimiter: ":",
     values: {
       0: {
-        name: "assetNamespace",
+        name: "namespace",
         regex: "[-a-z0-9]{3,8}",
       },
       1: {
-        name: "assetReference",
+        name: "reference",
         regex: "[-a-zA-Z0-9]{1,64}",
       },
     },

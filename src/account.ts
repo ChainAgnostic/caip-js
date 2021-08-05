@@ -1,20 +1,20 @@
-import { ChainID, ChainIDParams } from "./chain";
+import { ChainId, ChainIdParams } from "./chain";
 import { CAIP } from "./spec";
 import { IdentifierSpec } from "./types";
 import { isValidId, joinParams, getParams } from "./utils";
 
-export interface AccountIdSplitParams extends ChainIDParams {
+export interface AccountIdSplitParams extends ChainIdParams {
   address: string;
 }
-export interface AccountIDParams {
-  chainId: string | ChainIDParams;
+export interface AccountIdParams {
+  chainId: string | ChainIdParams;
   address: string;
 }
 
-export class AccountID {
+export class AccountId {
   public static spec: IdentifierSpec = CAIP["10"];
 
-  public static parse(id: string): AccountIDParams {
+  public static parse(id: string): AccountIdParams {
     if (!isValidId(id, this.spec)) {
       throw new Error(`Invalid ${this.spec.name} provided: ${id}`);
     }
@@ -22,12 +22,12 @@ export class AccountID {
       id,
       this.spec
     );
-    const chainId = new ChainID({ namespace, reference });
-    return new AccountID({ chainId, address }).toJson();
+    const chainId = new ChainId({ namespace, reference });
+    return new AccountId({ chainId, address }).toJson();
   }
 
-  public static format(params: AccountIDParams): string {
-    const chainId = new ChainID(params.chainId);
+  public static format(params: AccountIdParams): string {
+    const chainId = new ChainId(params.chainId);
     const splitParams: AccountIdSplitParams = {
       ...chainId.toJson(),
       address: params.address,
@@ -35,23 +35,23 @@ export class AccountID {
     return joinParams(splitParams as any, this.spec);
   }
 
-  public chainId: ChainID;
+  public chainId: ChainId;
   public address: string;
 
-  constructor(params: AccountIDParams | string) {
+  constructor(params: AccountIdParams | string) {
     if (typeof params === "string") {
-      params = AccountID.parse(params);
+      params = AccountId.parse(params);
     }
 
-    this.chainId = new ChainID(params.chainId);
+    this.chainId = new ChainId(params.chainId);
     this.address = params.address;
   }
 
   public toString(): string {
-    return AccountID.format(this.toJson());
+    return AccountId.format(this.toJson());
   }
 
-  public toJson(): AccountIDParams {
+  public toJson(): AccountIdParams {
     return {
       chainId: this.chainId.toJson(),
       address: this.address,

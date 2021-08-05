@@ -1,32 +1,32 @@
-import { ChainID } from "../src";
+import { ChainId } from "../src";
 
 import * as data from "./data";
 
-function assertChainIDInterface(result: ChainID) {
+function assertChainIdInterface(result: ChainId) {
   expect(result.namespace).toEqual(data.CHAIN_ID_NAMESPACE);
   expect(result.reference).toEqual(data.CHAIN_ID_REFERENCE);
   expect(result.toString()).toEqual(data.CHAIN_ID_STRING);
   expect(result.toJson()).toEqual(data.CHAIN_ID_PARAMS);
 }
 
-describe("ChainID", () => {
+describe("ChainId", () => {
   it("should parse string", async () => {
-    const result = ChainID.parse(data.CHAIN_ID_STRING);
+    const result = ChainId.parse(data.CHAIN_ID_STRING);
     expect(result).toEqual(data.CHAIN_ID_PARAMS);
   });
 
   it("should format params", async () => {
-    const result = ChainID.format(data.CHAIN_ID_PARAMS);
+    const result = ChainId.format(data.CHAIN_ID_PARAMS);
     expect(result).toEqual(data.CHAIN_ID_STRING);
   });
 
   it("should instantiate from json", async () => {
-    const result = new ChainID(data.CHAIN_ID_PARAMS);
-    assertChainIDInterface(result);
+    const result = new ChainId(data.CHAIN_ID_PARAMS);
+    assertChainIdInterface(result);
   });
 
   it("should instantiate from string", async () => {
-    const result = new ChainID(data.CHAIN_ID_STRING);
-    assertChainIDInterface(result);
+    const result = new ChainId(data.CHAIN_ID_STRING);
+    assertChainIdInterface(result);
   });
 });
