@@ -24,8 +24,15 @@ const CAIP10: IdentifierSpec = {
   parameters: {
     delimiter: ":",
     values: {
-      0: CAIP2,
+      0: {
+        name: "namespace",
+        regex: "[-a-z0-9]{3,8}",
+      },
       1: {
+        name: "reference",
+        regex: "[-a-zA-Z0-9]{1,32}",
+      },
+      2: {
         name: "address",
         regex: "[a-zA-Z0-9]{1,64}",
       },

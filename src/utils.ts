@@ -25,15 +25,26 @@ export function joinParams(params: Params, spec: IdentifierSpec): string {
 }
 
 export function isValidId(id: string, spec: IdentifierSpec): boolean {
+  // console.log("id", id);
+  // console.log("spec", spec);
+  // console.log("before regex");
   if (!new RegExp(spec.regex).test(id)) return false;
+  // console.log("after regex");
+  // console.log("before split");
   const params = splitParams(id, spec);
+  // console.log("after split");
+  // console.log("params", params);
+  // console.log("before length");
   if (params.length !== Object.keys(spec.parameters.values).length)
     return false;
+  // console.log("after length");
+  // console.log("before matches");
   const matches = params
     .map((param, index) =>
       new RegExp(spec.parameters.values[index].regex).test(param)
     )
     .filter(x => !!x);
   if (matches.length !== params.length) return false;
+  // console.log("after matches");
   return true;
 }

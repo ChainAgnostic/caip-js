@@ -46,7 +46,7 @@ ChainID.format({ namespace: "eip155", reference: "1" });
 import { AccountID } from "caip";
 
 const accountId = new AccountID(
-  "0xab16a96d359ec26a11e2c2b3d8f8b8942d5bfcdb@eip155:1"
+  "eip155:1:0xab16a96d359ec26a11e2c2b3d8f8b8942d5bfcdb"
 );
 
 // OR
@@ -66,7 +66,7 @@ const accountId = new AccountID({
 // THEN
 
 accountId.toString();
-// "0xab16a96d359ec26a11e2c2b3d8f8b8942d5bfcdb@eip155:1"
+// "eip155:1:0xab16a96d359ec26a11e2c2b3d8f8b8942d5bfcdb"
 
 accountId.toJson();
 // { address: "0xab16a96d359ec26a11e2c2b3d8f8b8942d5bfcdb", chainId: { namespace: "eip155", reference: "1" } }
@@ -77,7 +77,7 @@ accountId.toJson();
 ```typescript
 import { AccountID } from "caip";
 
-AccountID.parse("0xab16a96d359ec26a11e2c2b3d8f8b8942d5bfcdb@eip155:1");
+AccountID.parse("eip155:1:0xab16a96d359ec26a11e2c2b3d8f8b8942d5bfcdb");
 // { address: "0xab16a96d359ec26a11e2c2b3d8f8b8942d5bfcdb", chainId: { namespace: "eip155", reference: "1" } }
 
 // AND
@@ -86,7 +86,7 @@ AccountID.format({
   address: "0xab16a96d359ec26a11e2c2b3d8f8b8942d5bfcdb",
   chainId: { namespace: "eip155", reference: "1" },
 });
-//"0xab16a96d359ec26a11e2c2b3d8f8b8942d5bfcdb@eip155:1"
+//"eip155:1:0xab16a96d359ec26a11e2c2b3d8f8b8942d5bfcdb"
 
 // OR
 
@@ -94,5 +94,5 @@ AccountID.format({
   address: "0xab16a96d359ec26a11e2c2b3d8f8b8942d5bfcdb",
   chainId: "eip155:1",
 });
-//"0xab16a96d359ec26a11e2c2b3d8f8b8942d5bfcdb@eip155:1"
+//"eip155:1:0xab16a96d359ec26a11e2c2b3d8f8b8942d5bfcdb"
 ```

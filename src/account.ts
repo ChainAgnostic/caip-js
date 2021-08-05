@@ -3,6 +3,9 @@ import { CAIP } from "./spec";
 import { IdentifierSpec } from "./types";
 import { isValidId, joinParams, getParams } from "./utils";
 
+export interface AccountIdSplitParams extends ChainIDParams {
+  address: string;
+}
 export interface AccountIDParams {
   chainId: string | ChainIDParams;
   address: string;
@@ -15,11 +18,21 @@ export class AccountID {
     if (!isValidId(id, this.spec)) {
       throw new Error(`Invalid ${this.spec.name} provided: ${id}`);
     }
-    return new AccountID(getParams<AccountIDParams>(id, this.spec)).toJson();
+    const { namespace, reference, address } = getParams<AccountIdSplitParams>(
+      id,
+      this.spec
+    );
+    const chainId = new ChainID({ namespace, reference });
+    return new AccountID({ chainId, address }).toJson();
   }
 
   public static format(params: AccountIDParams): string {
-    return joinParams(params as any, this.spec);
+    const chainId = new ChainID(params.chainId);
+    const splitParams: AccountIdSplitParams = {
+      ...chainId.toJson(),
+      address: params.address,
+    };
+    return joinParams(splitParams as any, this.spec);
   }
 
   public chainId: ChainID;

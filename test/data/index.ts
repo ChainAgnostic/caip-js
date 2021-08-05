@@ -13,10 +13,10 @@ export const CHAIN_ID_PARAMS = {
 };
 
 // AccountID Data Points
-export const ACCOUNT_ID_DELIMITER = "@";
+export const ACCOUNT_ID_DELIMITER = ":";
 export const ACCOUNT_ID_ADDRESS = "0xab16a96d359ec26a11e2c2b3d8f8b8942d5bfcdb";
 export const ACCOUNT_ID_STRING =
-  ACCOUNT_ID_ADDRESS + ACCOUNT_ID_DELIMITER + CHAIN_ID_STRING;
+  CHAIN_ID_STRING + ACCOUNT_ID_DELIMITER + ACCOUNT_ID_ADDRESS;
 export const ACCOUNT_ID_PARAMS = {
   chainId: CHAIN_ID_STRING,
   address: ACCOUNT_ID_ADDRESS,
@@ -29,7 +29,7 @@ export const ACCOUNT_ID_NESTED_PARAMS = {
 
 // AssetName Data Points
 export const ASSET_NAMESPACE_REFERENCE_DELIMITER = ":";
-export const ASSET_NAMESPACE = "namespace";
+export const ASSET_NAMESPACE = "erc721";
 export const ASSET_REFERENCE = "0xab16a96d359ec26a11e2c2b3d8f8b8942d5bfcdb";
 export const ASSET_NAMESPACE_AND_REFERENCE_STRING = `${ASSET_NAMESPACE}${ASSET_NAMESPACE_REFERENCE_DELIMITER}${ASSET_REFERENCE}`;
 export const ASSET_NAMESPACE_AND_REFERENCE_PARAMS: AssetNameParams = {
