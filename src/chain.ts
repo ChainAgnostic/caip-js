@@ -28,6 +28,7 @@ export class ChainID {
     if (typeof params === "string") {
       params = ChainID.parse(params);
     }
+
     this.namespace = params.namespace;
     this.reference = params.reference;
   }
