@@ -34,8 +34,8 @@ const CAIP10: IdentifierSpec = {
 };
 
 // represents namespace:reference in CAIP-19
-const AssetNamespaceAndReference: IdentifierSpec = {
-  name: "assetNamespaceAndReference",
+const AssetName: IdentifierSpec = {
+  name: "assetName",
   regex: "[-:a-zA-Z0-9]{5,128}",
   parameters: {
     delimiter: ":",
@@ -59,7 +59,7 @@ const CAIP19AssetType: IdentifierSpec = {
     delimiter: "/",
     values: {
       0: CAIP2,
-      1: AssetNamespaceAndReference,
+      1: AssetName,
     },
   },
 };
@@ -71,7 +71,7 @@ const CAIP19AssetId: IdentifierSpec = {
     delimiter: "/",
     values: {
       0: CAIP2,
-      1: AssetNamespaceAndReference,
+      1: AssetName,
       2: {
         name: "tokenId",
         regex: "[-a-zA-Z0-9]{1,47}",
@@ -84,7 +84,7 @@ export const CAIP = {
   "2": CAIP2,
   "10": CAIP10,
   "19": {
-    assetNamespaceAndReference: AssetNamespaceAndReference,
+    assetName: AssetName,
     assetType: CAIP19AssetType,
     assetId: CAIP19AssetId,
   },

@@ -1,7 +1,4 @@
-import {
-  AssetNamespaceAndReference,
-  AssetNamespaceAndReferenceParams,
-} from "./assetNamespaceAndReference";
+import { AssetName, AssetNameParams } from "./assetName";
 import { ChainID, ChainIDParams } from "./chain";
 import { CAIP } from "./spec";
 import { IdentifierSpec } from "./types";
@@ -9,7 +6,7 @@ import { isValidId, joinParams, getParams } from "./utils";
 
 export interface AssetTypeParams {
   chainId: string | ChainIDParams;
-  assetNamespaceAndReference: string | AssetNamespaceAndReferenceParams;
+  assetName: string | AssetNameParams;
 }
 
 export class AssetType {
@@ -27,7 +24,7 @@ export class AssetType {
   }
 
   public chainId: ChainID;
-  public assetNamespaceAndReference: AssetNamespaceAndReference;
+  public assetName: AssetName;
 
   constructor(params: AssetTypeParams | string) {
     if (typeof params === "string") {
@@ -35,9 +32,7 @@ export class AssetType {
     }
 
     this.chainId = new ChainID(params.chainId);
-    this.assetNamespaceAndReference = new AssetNamespaceAndReference(
-      params.assetNamespaceAndReference
-    );
+    this.assetName = new AssetName(params.assetName);
   }
 
   public toString(): string {
@@ -47,7 +42,7 @@ export class AssetType {
   public toJson(): AssetTypeParams {
     return {
       chainId: this.chainId.toJson(),
-      assetNamespaceAndReference: this.assetNamespaceAndReference,
+      assetName: this.assetName,
     };
   }
 }
