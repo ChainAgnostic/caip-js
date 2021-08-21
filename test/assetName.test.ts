@@ -6,7 +6,7 @@ function assertInterface(result: AssetName) {
   expect(result.namespace).toEqual(data.ASSET_NAMESPACE);
   expect(result.reference).toEqual(data.ASSET_REFERENCE);
   expect(result.toString()).toEqual(data.ASSET_NAME_STRING);
-  expect(result.toJson()).toEqual(data.ASSET_NAME_PARAMS);
+  expect(result.toJSON()).toEqual(data.ASSET_NAME_PARAMS);
 }
 
 describe("AssetName", () => {
@@ -33,5 +33,12 @@ describe("AssetName", () => {
   it("should instantiate from nested params", async () => {
     const result = new AssetName(data.ASSET_NAME_PARAMS);
     assertInterface(result);
+  });
+
+  it("should support JSON.stringify", async () => {
+    const result = new AssetName(data.ASSET_NAME_PARAMS);
+    const str = JSON.stringify(result);
+    const json = JSON.parse(str);
+    assertInterface(new AssetName(json));
   });
 });

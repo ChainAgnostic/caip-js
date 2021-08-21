@@ -6,7 +6,7 @@ function assertInterface(result: AssetType) {
   expect(result.chainId.toString()).toEqual(data.CHAIN_ID_STRING);
   expect(result.assetName.toString()).toEqual(data.ASSET_NAME_STRING);
   expect(result.toString()).toEqual(data.ASSET_TYPE_STRING);
-  expect(result.toJson()).toEqual(data.ASSET_TYPE_NESTED_PARAMS);
+  expect(result.toJSON()).toEqual(data.ASSET_TYPE_NESTED_PARAMS);
 }
 
 describe("AssetType", () => {
@@ -33,5 +33,12 @@ describe("AssetType", () => {
   it("should instantiate from nested params", async () => {
     const result = new AssetType(data.ASSET_TYPE_NESTED_PARAMS);
     assertInterface(result);
+  });
+
+  it("should support JSON.stringify", async () => {
+    const result = new AssetType(data.ASSET_TYPE_PARAMS);
+    const str = JSON.stringify(result);
+    const json = JSON.parse(str);
+    assertInterface(new AssetType(json));
   });
 });
