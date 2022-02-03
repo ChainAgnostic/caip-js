@@ -123,7 +123,7 @@ const assetId = new AssetId({
 
 const assetId = new AssetId({
   chainId: "eip155:1",
-  address: "erc721:0xab16a96d359ec26a11e2c2b3d8f8b8942d5bfcdb",
+  assetName: "erc721:0xab16a96d359ec26a11e2c2b3d8f8b8942d5bfcdb",
   tokenId: "1",
 });
 
@@ -168,7 +168,7 @@ AssetId.format({
 
 AssetId.format({
   chainId: "eip155:1",
-  address: "erc721:0xab16a96d359ec26a11e2c2b3d8f8b8942d5bfcdb",
+  assetName: "erc721:0xab16a96d359ec26a11e2c2b3d8f8b8942d5bfcdb",
   tokenId: "1",
 });
 // "eip155:1/erc721:0xab16a96d359ec26a11e2c2b3d8f8b8942d5bfcdb/1"
@@ -199,7 +199,7 @@ const assetType = new AssetType({
 
 const assetType = new AssetType({
   chainId: "eip155:1",
-  address: "erc721:0xab16a96d359ec26a11e2c2b3d8f8b8942d5bfcdb",
+  assetName: "erc721:0xab16a96d359ec26a11e2c2b3d8f8b8942d5bfcdb",
 });
 
 // THEN
@@ -219,7 +219,7 @@ assetType.toJson();
 ```typescript
 import { AssetType } from "caip";
 
-AssetType.parse("eip155:1/erc721:0xab16a96d359ec26a11e2c2b3d8f8b8942d5bfcdb/1");
+AssetType.parse("eip155:1/erc721:0xab16a96d359ec26a11e2c2b3d8f8b8942d5bfcdb");
 // {
 //   chainId: { namespace: "eip155", reference: "1" },
 //   assetName: { namespace: "erc721", reference: "0xab16a96d359ec26a11e2c2b3d8f8b8942d5bfcdb" },
@@ -240,7 +240,7 @@ AssetType.format({
 
 AssetType.format({
   chainId: "eip155:1",
-  address: "erc721:0xab16a96d359ec26a11e2c2b3d8f8b8942d5bfcdb",
+  assetName: "erc721:0xab16a96d359ec26a11e2c2b3d8f8b8942d5bfcdb",
 });
 // "eip155:1/erc721:0xab16a96d359ec26a11e2c2b3d8f8b8942d5bfcdb"
 ```
