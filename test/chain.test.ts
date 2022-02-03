@@ -6,7 +6,7 @@ function assertChainIdInterface(result: ChainId) {
   expect(result.namespace).toEqual(data.CHAIN_ID_NAMESPACE);
   expect(result.reference).toEqual(data.CHAIN_ID_REFERENCE);
   expect(result.toString()).toEqual(data.CHAIN_ID_STRING);
-  expect(result.toJson()).toEqual(data.CHAIN_ID_PARAMS);
+  expect(result.toJSON()).toEqual(data.CHAIN_ID_PARAMS);
 }
 
 describe("ChainId", () => {
@@ -28,5 +28,12 @@ describe("ChainId", () => {
   it("should instantiate from string", async () => {
     const result = new ChainId(data.CHAIN_ID_STRING);
     assertChainIdInterface(result);
+  });
+
+  it("should support JSON.stringify", async () => {
+    const result = new ChainId(data.CHAIN_ID_STRING);
+    const str = JSON.stringify(result);
+    const json = JSON.parse(str);
+    assertChainIdInterface(new ChainId(json));
   });
 });

@@ -14,7 +14,7 @@ export class AssetName {
     if (!isValidId(id, this.spec)) {
       throw new Error(`Invalid ${this.spec.name} provided: ${id}`);
     }
-    return new AssetName(getParams<AssetNameParams>(id, this.spec)).toJson();
+    return new AssetName(getParams<AssetNameParams>(id, this.spec)).toJSON();
   }
 
   public static format(params: AssetNameParams): string {
@@ -34,10 +34,10 @@ export class AssetName {
   }
 
   public toString(): string {
-    return AssetName.format(this.toJson());
+    return AssetName.format(this.toJSON());
   }
 
-  public toJson(): AssetNameParams {
+  public toJSON(): AssetNameParams {
     return {
       namespace: this.namespace,
       reference: this.reference,

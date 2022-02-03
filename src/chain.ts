@@ -14,7 +14,7 @@ export class ChainId {
     if (!isValidId(id, this.spec)) {
       throw new Error(`Invalid ${this.spec.name} provided: ${id}`);
     }
-    return new ChainId(getParams<ChainIdParams>(id, this.spec)).toJson();
+    return new ChainId(getParams<ChainIdParams>(id, this.spec)).toJSON();
   }
 
   public static format(params: ChainIdParams): string {
@@ -34,10 +34,10 @@ export class ChainId {
   }
 
   public toString(): string {
-    return ChainId.format(this.toJson());
+    return ChainId.format(this.toJSON());
   }
 
-  public toJson(): ChainIdParams {
+  public toJSON(): ChainIdParams {
     return {
       namespace: this.namespace,
       reference: this.reference,

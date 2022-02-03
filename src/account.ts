@@ -23,13 +23,13 @@ export class AccountId {
       this.spec
     );
     const chainId = new ChainId({ namespace, reference });
-    return new AccountId({ chainId, address }).toJson();
+    return new AccountId({ chainId, address }).toJSON();
   }
 
   public static format(params: AccountIdParams): string {
     const chainId = new ChainId(params.chainId);
     const splitParams: AccountIdSplitParams = {
-      ...chainId.toJson(),
+      ...chainId.toJSON(),
       address: params.address,
     };
     return joinParams(splitParams as any, this.spec);
@@ -48,12 +48,12 @@ export class AccountId {
   }
 
   public toString(): string {
-    return AccountId.format(this.toJson());
+    return AccountId.format(this.toJSON());
   }
 
-  public toJson(): AccountIdParams {
+  public toJSON(): AccountIdParams {
     return {
-      chainId: this.chainId.toJson(),
+      chainId: this.chainId.toJSON(),
       address: this.address,
     };
   }

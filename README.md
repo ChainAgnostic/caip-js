@@ -20,7 +20,7 @@ const chainId = new ChainId({ namespace: "eip155", reference: "1" });
 chainId.toString();
 // "eip155:1"
 
-chainId.toJson();
+chainId.toJSON();
 // { namespace: "eip155", reference: "1" }
 ```
 
@@ -68,7 +68,7 @@ const accountId = new AccountId({
 accountId.toString();
 // "eip155:1:0xab16a96d359ec26a11e2c2b3d8f8b8942d5bfcdb"
 
-accountId.toJson();
+accountId.toJSON();
 // { address: "0xab16a96d359ec26a11e2c2b3d8f8b8942d5bfcdb", chainId: { namespace: "eip155", reference: "1" } }
 ```
 
@@ -132,7 +132,7 @@ const assetId = new AssetId({
 assetId.toString();
 // "eip155:1/erc721:0xab16a96d359ec26a11e2c2b3d8f8b8942d5bfcdb/1"
 
-assetId.toJson();
+assetId.toJSON();
 // {
 //   chainId: { namespace: "eip155", reference: "1" },
 //   assetName: { namespace: "erc721", reference: "0xab16a96d359ec26a11e2c2b3d8f8b8942d5bfcdb" },
@@ -207,7 +207,7 @@ const assetType = new AssetType({
 assetType.toString();
 // "eip155:1/erc721:0xab16a96d359ec26a11e2c2b3d8f8b8942d5bfcdb"
 
-assetType.toJson();
+assetType.toJSON();
 // {
 //   chainId: { namespace: "eip155", reference: "1" },
 //   assetName: { namespace: "erc721", reference: "0xab16a96d359ec26a11e2c2b3d8f8b8942d5bfcdb" },

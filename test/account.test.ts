@@ -6,7 +6,7 @@ function assertAccountIdInterface(result: AccountId) {
   expect(result.chainId.toString()).toEqual(data.CHAIN_ID_STRING);
   expect(result.address).toEqual(data.ACCOUNT_ID_ADDRESS);
   expect(result.toString()).toEqual(data.ACCOUNT_ID_STRING);
-  expect(result.toJson()).toEqual(data.ACCOUNT_ID_NESTED_PARAMS);
+  expect(result.toJSON()).toEqual(data.ACCOUNT_ID_NESTED_PARAMS);
 }
 
 describe("AccountId", () => {
@@ -33,5 +33,12 @@ describe("AccountId", () => {
   it("should instantiate from nested params", async () => {
     const result = new AccountId(data.ACCOUNT_ID_NESTED_PARAMS);
     assertAccountIdInterface(result);
+  });
+
+  it("should support JSON.stringify", async () => {
+    const result = new AccountId(data.ACCOUNT_ID_PARAMS);
+    const str = JSON.stringify(result);
+    const json = JSON.parse(str);
+    assertAccountIdInterface(new AccountId(json));
   });
 });
