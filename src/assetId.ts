@@ -17,7 +17,7 @@ export class AssetId {
     if (!isValidId(id, this.spec)) {
       throw new Error(`Invalid ${this.spec.name} provided: ${id}`);
     }
-    return new AssetId(getParams<AssetIdParams>(id, this.spec)).toJson();
+    return new AssetId(getParams<AssetIdParams>(id, this.spec)).toJSON();
   }
 
   public static format(params: AssetIdParams): string {
@@ -39,13 +39,13 @@ export class AssetId {
   }
 
   public toString(): string {
-    return AssetId.format(this.toJson());
+    return AssetId.format(this.toJSON());
   }
 
-  public toJson(): AssetIdParams {
+  public toJSON(): AssetIdParams {
     return {
-      chainId: this.chainId.toJson(),
-      assetName: this.assetName.toJson(),
+      chainId: this.chainId.toJSON(),
+      assetName: this.assetName.toJSON(),
       tokenId: this.tokenId,
     };
   }

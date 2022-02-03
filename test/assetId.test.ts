@@ -7,7 +7,7 @@ function assertInterface(result: AssetId) {
   expect(result.assetName.toString()).toEqual(data.ASSET_NAME_STRING);
   expect(result.tokenId).toEqual(data.TOKEN_ID);
   expect(result.toString()).toEqual(data.ASSET_ID_STRING);
-  expect(result.toJson()).toEqual(data.ASSET_ID_NESTED_PARAMS);
+  expect(result.toJSON()).toEqual(data.ASSET_ID_NESTED_PARAMS);
 }
 
 describe("AssetId", () => {
@@ -34,5 +34,12 @@ describe("AssetId", () => {
   it("should instantiate from nested params", async () => {
     const result = new AssetId(data.ASSET_ID_NESTED_PARAMS);
     assertInterface(result);
+  });
+
+  it("should support JSON.stringify", async () => {
+    const result = new AssetId(data.ASSET_ID_PARAMS);
+    const str = JSON.stringify(result);
+    const json = JSON.parse(str);
+    assertInterface(new AssetId(json));
   });
 });
