@@ -1,4 +1,5 @@
 import { AssetIdParams, AssetTypeParams } from "../../src";
+import { TokenURIParams } from "../../src";
 import { AssetNameParams } from "../../src/assetName";
 
 // ChainId Data Points
@@ -62,4 +63,16 @@ export const ASSET_ID_NESTED_PARAMS: AssetIdParams = {
   chainId: CHAIN_ID_PARAMS,
   assetName: ASSET_NAME_PARAMS,
   tokenId: TOKEN_ID,
+};
+
+export const BLOCK_NUMBER_TAG = "123";
+export const TOKEN_URI_STRING = `${ASSET_ID_STRING}#${BLOCK_NUMBER_TAG}`;
+export const TOKEN_URI_PARAMS: TokenURIParams = {
+  assetId: ASSET_ID_STRING,
+  blockNumberTag: BLOCK_NUMBER_TAG,
+};
+
+export const TOKEN_URI_NESTED_PARAMS: TokenURIParams = {
+  assetId: ASSET_ID_NESTED_PARAMS,
+  blockNumberTag: BLOCK_NUMBER_TAG,
 };
