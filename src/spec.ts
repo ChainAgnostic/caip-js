@@ -1,5 +1,11 @@
 import { IdentifierSpec } from "./types";
 
+const REGEX = {
+  namespace: "[-a-z0-9]{3,8}",
+  reference: "[-a-zA-Z0-9]{1,32}",
+  address: "[a-zA-Z0-9]{1,64}",
+};
+
 const CAIP2: IdentifierSpec = {
   name: "chainId",
   regex: "[-:a-zA-Z0-9]{5,41}",
@@ -8,11 +14,11 @@ const CAIP2: IdentifierSpec = {
     values: {
       0: {
         name: "namespace",
-        regex: "[-a-z0-9]{3,8}",
+        regex: REGEX.namespace,
       },
       1: {
         name: "reference",
-        regex: "[-a-zA-Z0-9]{1,32}",
+        regex: REGEX.reference,
       },
     },
   },
@@ -26,15 +32,15 @@ const CAIP10: IdentifierSpec = {
     values: {
       0: {
         name: "namespace",
-        regex: "[-a-z0-9]{3,8}",
+        regex: REGEX.namespace,
       },
       1: {
         name: "reference",
-        regex: "[-a-zA-Z0-9]{1,32}",
+        regex: REGEX.reference,
       },
       2: {
         name: "address",
-        regex: "[a-zA-Z0-9]{1,64}",
+        regex: REGEX.address,
       },
     },
   },
@@ -49,11 +55,11 @@ const AssetName: IdentifierSpec = {
     values: {
       0: {
         name: "namespace",
-        regex: "[-a-z0-9]{3,8}",
+        regex: REGEX.namespace,
       },
       1: {
         name: "reference",
-        regex: "[-a-zA-Z0-9]{1,64}",
+        regex: REGEX.reference,
       },
     },
   },
