@@ -1,6 +1,6 @@
-# caip [![npm version](https://badge.fury.io/js/caip.svg)](https://badge.fury.io/js/caip)
+# caip-js [![npm version](https://badge.fury.io/js/caip-js.svg)](https://badge.fury.io/js/caip-js)
 
-CAIP standard utils
+Levain fork of `caip-js` released as caip-js. This fork is intended to fast-track PRs and fixes to the original repo.
 
 ## ChainId (CAIP-2)
 
