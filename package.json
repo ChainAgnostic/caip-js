@@ -25,6 +25,7 @@
   "unpkg": "dist/index.umd.js",
   "exports": {
     ".": {
+      "types": "./dist/index.d.ts",
       "import": "./dist/index.mjs",
       "require": "./dist/index.js"
     }
