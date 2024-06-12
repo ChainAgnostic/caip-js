@@ -87,6 +87,21 @@ const CAIP19AssetId: IdentifierSpec = {
   },
 };
 
+const CAIP19TokenURI: IdentifierSpec = {
+  name: "tokenURI",
+  regex: "[-:a-zA-Z0-9]{13,226}",
+  parameters: {
+    delimiter: "#",
+    values: {
+      0: CAIP19AssetId,
+      1: {
+        name: "blockNumberTag",
+        regex: "[0-9]{1,78}|latest",
+      },
+    },
+  },
+};
+
 export const CAIP = {
   "2": CAIP2,
   "10": CAIP10,
@@ -94,5 +109,6 @@ export const CAIP = {
     assetName: AssetName,
     assetType: CAIP19AssetType,
     assetId: CAIP19AssetId,
+    tokenURI: CAIP19TokenURI,
   },
 };
